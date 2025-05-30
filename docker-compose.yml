@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    container_name: carimport-mongo-new
+    ports:
+      - '27018:27017'
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./carimport-project/backend
+    container_name: carimport-backend
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/carimport
+
+  frontend:
+    build: ./carimport-project/frontend
+    container_name: carimport-frontend
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
