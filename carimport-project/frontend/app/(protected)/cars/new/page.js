@@ -43,8 +43,6 @@ export default function AddCarPage() {
         }
     }
 
-
-
     return (
         <div className="max-w-5xl mx-auto px-4 py-10">
             <div className="bg-white rounded-xl shadow-lg p-8">

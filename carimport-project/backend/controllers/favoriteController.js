@@ -29,7 +29,7 @@ exports.addFavorite = async (req, res) => {
 
 exports.removeFavorite = async (req, res) => {
     try {
-        const user = await User.findById(req.user.id)
+        const userId = await User.findById(req.user.id).populate('favorites')
         const carId = req.params.carId
 
         user.favorites = user.favorites.filter(id => id.toString() !== carId)
